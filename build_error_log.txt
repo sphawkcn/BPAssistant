@@ -1,0 +1,13 @@
+错误发生在文件---------------:
+E:\kuaipan\AAuto文档\project\自动批量发增刊（针对旧版系统）\lib\myTools.aau
+错误发生在代码---------------：
+
+错误信息---------------:
+
+error:
+line:#10
+file:...kuaipan\AAuto文档\project\自动批量发增刊（针对旧版系统）\lib\myTools.aau
+error:
+expected:'='
+near:...'..'
+byte:0x2E
