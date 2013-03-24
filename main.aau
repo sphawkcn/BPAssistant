@@ -34,7 +34,7 @@ mainForm.bindConfig( config.mainForm,{
 	combobox = "selIndex";
 	} );
 
-//用户核查
+//多线程用户核查
 if( ! config.default.numberofstarts ){
     config.default.numberofstarts = 1;
 }
@@ -94,12 +94,28 @@ mainForm.button3.oncommand = function(id,event){
 mainForm.button.oncommand = function(id,event){
 	mainForm.button.disabled = true
 	var num = mainForm.edit.text;
-	cycleNum = tonumber(num);
+	pianshuNum = tonumber(num);
 	string.save("/待处理稿件.txt","",false)
 	
 	下一篇句柄 = winex.findEx(主窗口句柄,,"TPanel",)
+		
+	newNum = 0
+	tmpstr = "0"
+	while( newNum < pianshuNum){
+		hwnd = winex.findEx(主窗口句柄,6,"TDBEdit" )
+		str = winex.getText(hwnd)
+		if(str != tmpstr){
+			string.save("/待处理稿件.txt",str+'\r\n',true)
+			newNum++
+		}
+		
+		winex.mouse.click(下一篇句柄,167,28)
+		win.delay(500);
+	}
 	
-	for( i=1;cycleNum;1 ){
+	
+/*
+	for( i=1;pianshuNum;1 ){
 		//获取稿号那个控件里面的文本
 		hwnd = winex.findEx(主窗口句柄,6,"TDBEdit" )
 		str = winex.getText(hwnd)
@@ -108,6 +124,7 @@ mainForm.button.oncommand = function(id,event){
 		win.delay(2000);
 	
 	}
+*/
 	mainForm.button.disabled = false;
 	mainForm.msgbox( "读取稿号完毕","自动批量发增刊" );
 }
